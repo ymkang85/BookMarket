@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Book"%>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
+<%@ page import="dao.BookRepository"%>
 <html>
 <head>
 <link rel="stylesheet"
@@ -19,31 +19,33 @@
 		</div>
 	</div>
 	<%
-	ArrayList<Book> listOfBooks = bookDAO.getAllBook();
+	BookRepository dao = BookRepository.getInstance();
+	ArrayList<Book> listOfBooks = dao.getAllBook();
 	%>
 	<div class="container">
-		<div>
 			<%
 			for (int i = 0; i < listOfBooks.size(); i++) {
 				Book book = listOfBooks.get(i);
 			%>
-			<div>
-				<div>
-					<h3><%=book.getName()%></h3>
-					<p class="text-truncate"><%=book.getDescription()%>
-					<p><%=book.getAuthor()%> | <%=book.getPublisher()%> | <%=book.getUnitPrice()%>원
-				</div>
-				<div>
-					<a href="./book.jsp?id=<%=book.getBookId()%>"
-						class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>
-				</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img src="./resources/images/<%=book.getFilename()%>" style="width:200px; height:300px; margin:0; padding:0">
+			</div>			
+			<div class="col-md-6">				
+				<h3><%=book.getName()%></h3>
+				<p class="text-truncate"><%=book.getDescription()%>
+				<p><%=book.getAuthor()%> | <%=book.getPublisher()%> | <%=book.getUnitPrice()%>원
 			</div>
-			<hr class="block">
+			<div class="col-md-3">
+				<a href="./book.jsp?id=<%=book.getBookId()%>"
+					class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>
+			</div>
+		</div>
+		<hr class="block">
 			<%
 			}
 			%>
 		</div>
-	</div>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

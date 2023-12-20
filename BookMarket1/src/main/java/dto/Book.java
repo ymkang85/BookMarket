@@ -1,17 +1,18 @@
 package dto;
 
 public class Book {
-	private String bookId;
-	private String name;
-	private Integer unitPrice;
-	private String author;
-	private String description;
-	private String publisher;
-	private String category;
-	private long unitsInStock;
-	private long totalPages;
-	private String releaseDate;
-	private String condition;
+	private String bookId; 			//도서 아이디
+	private String name;			//도서명
+	private Integer unitPrice;		//가격
+	private String author;			//저자
+	private String description;		//설명
+	private String publisher;		//출판사
+	private String category;		//분류
+	private long unitsInStock;		//재고 수
+	private long totalPages;		//페이지 수
+	private String releaseDate;		//출판일(월/년)
+	private String condition;		//신규 도서 or 중고 도서 or E-Book
+	private String filename;		//이미지 파일명
 
 	public Book() {
 		super();
@@ -22,6 +23,14 @@ public class Book {
 		this.name = name;
 		this.unitPrice = unitPrice;
 	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}	
 
 	public String getBookId() {
 		return bookId;

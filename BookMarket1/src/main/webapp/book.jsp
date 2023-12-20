@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="dto.Book"%>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
+<%@ page import="dao.BookRepository"%>
+<%@ page errorPage="exceptionNoBookId.jsp" %>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -15,19 +16,23 @@
 	</div>
 	<%
 	String id = request.getParameter("id");
-	Book book = bookDAO.getBookById(id);
+	BookRepository dao = BookRepository.getInstance();
+	Book book = dao.getBookById(id);
 	%>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-5">
+					<img src="./resources/images/<%=book.getFilename()%>" style="width:300px; height:400px">
+			</div>
+			<div class="col-md-6">				
 				<h3><% out.println(book.getName() );%></h3>
 				<p><% out.println(book.getDescription() ); %>
-				<p><b>도서 코드 : </b><span class="badge badge-danger"><%=book.getBookId()%></span>
+				<p><b>도서코드 : </b><span class="badge badge-danger"><%=book.getBookId()%></span>
 				<p><b>출판사</b> : <% out.println(book.getPublisher() );%>
 				<p><b>저자</b> : <% out.println(book.getAuthor() );%>
-				<p><b>재고 수</b> : <% out.println(book.getUnitsInStock() );%>
-				<p><b>총 페이지 수</b> : <% out.println(book.getTotalPages() );%>
-				<p><b>출판 일</b> : <% out.println(book.getReleaseDate() );%>
+				<p><b>재고수</b> : <% out.println(book.getUnitsInStock() );%>
+				<p><b>총페이지 수</b> : <% out.println(book.getTotalPages() );%>
+				<p><b>출판일</b> : <% out.println(book.getReleaseDate() );%>
 				<h4><% out.println(book.getUnitPrice() );%>원
 				</h4>
 				<p>
