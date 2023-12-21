@@ -4,7 +4,7 @@ function CheckAddBook() {
 	var unitPrice = document.getElementById("unitPrice");
 	var unitsInStock = document.getElementById("unitsInStock");
 
-	if (!check(/^P[0-9]{4,11}$/, productId,
+	if (!check(/^ISBN[0-9]{1,11}$/, productId,
 		"[도서 코드]\n와 숫자를 조합하여 5~12자까지 입력하세요 \n 첫 글자는 반드시 ISBN으로 시작하세요"))
 		return false;
 

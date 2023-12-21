@@ -13,6 +13,15 @@ public class Book {
 	private String releaseDate;		//출판일(월/년)
 	private String condition;		//신규 도서 or 중고 도서 or E-Book
 	private String filename;		//이미지 파일명
+	private int quantity;			//장바구니에 담은 개수
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 	public Book() {
 		super();
